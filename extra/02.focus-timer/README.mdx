@@ -12,6 +12,55 @@ marked with 🐨.
 🐨 Then open <InlineFile file="src/app.tsx" /> and use your utilities where
 marked with 🐨.
 
+## Observable behavior to aim for
+
+### `formatDuration(ms)`
+
+Return zero-padded `mm:ss` for a duration in milliseconds:
+
+| Input (ms) | Output  |
+| ---------- | ------- |
+| `0`        | `00:00` |
+| `65000`    | `01:05` |
+| `1500000`  | `25:00` |
+
+### `getNextPhase(current, completedFocusSessions, settings)`
+
+`completedFocusSessions` is the number of focus sessions completed so far,
+**including** the focus session you just finished when leaving `'focus'`.
+
+After a focus session, take a long break when that completed count reaches a
+multiple of `settings.longBreakInterval`; otherwise take a short break. After
+either break, return to focus.
+
+Transition table (`longBreakInterval: 4`):
+
+| Current phase | completedFocusSessions | Next phase   |
+| ------------- | ---------------------- | ------------ |
+| `focus`       | `1`                    | `shortBreak` |
+| `focus`       | `2`                    | `shortBreak` |
+| `focus`       | `3`                    | `shortBreak` |
+| `focus`       | `4`                    | `longBreak`  |
+| `focus`       | `8`                    | `longBreak`  |
+| `shortBreak`  | (any)                  | `focus`      |
+| `longBreak`   | (any)                  | `focus`      |
+
+The UI should pass that completed-focus count into `getNextPhase` (see the
+`handleComplete` note in `app.tsx`).
+
+### `getSessionStreak(sessions)`
+
+Count how many consecutive sessions at the **start** of the array (newest
+first) have `phase: 'focus'`.
+
+Example: `[{ phase: 'focus' }, { phase: 'focus' }, { phase: 'shortBreak' }]`
+→ streak `2`.
+
+### `groupSessionsByPhase(sessions)`
+
+Return `{ focus: [...], shortBreak: [...], longBreak: [...] }` containing every
+session under its phase key.
+
 ## Running the app
 
 ```sh

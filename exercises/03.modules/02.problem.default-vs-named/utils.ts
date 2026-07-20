@@ -1,6 +1,6 @@
 // Default vs Named Exports
 
-// 🐨 Make formatCurrency available as a named import from this module
+// 🐨 Export formatCurrency as a named export
 function formatCurrency(amount: number): string {
 	return new Intl.NumberFormat('en-US', {
 		style: 'currency',
@@ -8,12 +8,12 @@ function formatCurrency(amount: number): string {
 	}).format(amount)
 }
 
-// 🐨 Make formatDate available as a named import from this module
+// 🐨 Export formatDate as a named export
 function formatDate(date: Date): string {
 	return new Intl.DateTimeFormat('en-US').format(date)
 }
 
-// 🐨 Make Formatter the default export for this module
+// 🐨 Export Formatter as the default export
 class Formatter {
 	formatCurrency(amount: number): string {
 		return formatCurrency(amount)

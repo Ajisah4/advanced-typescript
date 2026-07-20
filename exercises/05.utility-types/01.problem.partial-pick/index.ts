@@ -8,13 +8,11 @@ type User = {
 	createdAt: Date
 }
 
-// 🐨 Create a type PartialUser where all User properties are optional
+// 🐨 Create PartialUser — all User properties optional
+// 🐨 Create UserNameEmail — only name and email from User
+// 🐨 Create UserUpdate — optional updates for name and/or email only
 
-// 🐨 Create a type UserNameEmail that includes only name and email
-
-// 🐨 Create a type UserUpdate that allows optional updates to name and email only
-
-// @ts-expect-error - 💣 remove this comment
+// @ts-expect-error - 💣 remove this comment once UserUpdate exists
 function updateUser(user: User, updates: UserUpdate) {
 	return { ...user, ...updates }
 }
@@ -45,6 +43,5 @@ const updated3 = updateUser(user, {
 // This should NOT work - id is not in UserUpdate
 // const updated4 = updateUser(user, { id: '2' })
 
-// 🐨 Export your function so we can verify your work
-
+// 🐨 Export updateUser so we can verify your work
 // export { updateUser }

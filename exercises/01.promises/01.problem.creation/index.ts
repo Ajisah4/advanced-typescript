@@ -7,10 +7,10 @@ type User = {
 }
 
 // 🐨 Create a function `fetchUser` that returns a Promise<User>
-//    The Promise should resolve after 1 second with a user object
+//    Resolve after a short delay with:
+//    { id: '1', name: 'Alice', email: 'alice@example.com' }
 
-// 🐨 Call fetchUser and log the result when it resolves
+// 🐨 Call fetchUser and log the result when it resolves (optional)
 
-// 🐨 Export your function so we can verify your work
-
+// 🐨 Export fetchUser so we can verify your work
 // export { fetchUser }

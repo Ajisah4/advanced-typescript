@@ -3,13 +3,10 @@ import { test } from 'node:test'
 import * as solution from './index.ts'
 
 await test('fetchUser and getUserProfile are exported', () => {
-	assert.ok(
-		'fetchUser' in solution,
-		'🚨 Make sure you export "fetchUser" - add: export { fetchUser, getUserProfile }',
-	)
+	assert.ok('fetchUser' in solution, '🚨 Make sure you export "fetchUser"')
 	assert.ok(
 		'getUserProfile' in solution,
-		'🚨 Make sure you export "getUserProfile" - add: export { fetchUser, getUserProfile }',
+		'🚨 Make sure you export "getUserProfile"',
 	)
 })
 
@@ -60,7 +57,7 @@ await test(
 		assert.strictEqual(
 			result.status,
 			'success',
-			'🚨 getUserProfile() should return status "success" when fetchUser resolves',
+			'🚨 getUserProfile("1") should return status "success"',
 		)
 		if (result.status === 'success') {
 			assert.strictEqual(
@@ -81,7 +78,7 @@ await test(
 		assert.strictEqual(
 			result.status,
 			'error',
-			'🚨 getUserProfile("missing") should return status "error" when fetchUser rejects',
+			'🚨 getUserProfile("missing") should return status "error"',
 		)
 		if (result.status === 'error') {
 			assert.strictEqual(

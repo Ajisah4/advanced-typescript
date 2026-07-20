@@ -5,7 +5,7 @@ import * as solution from './index.ts'
 await test('fetchUserAndOrders is exported', () => {
 	assert.ok(
 		'fetchUserAndOrders' in solution,
-		'🚨 Make sure you export "fetchUserAndOrders" - add: export { fetchUserAndOrders }',
+		'🚨 Make sure you export "fetchUserAndOrders"',
 	)
 })
 
@@ -23,11 +23,11 @@ await test('promise chaining works correctly', { timeout: 5000 }, async () => {
 	assert.strictEqual(
 		result.user.id,
 		'1',
-		'🚨 user.id should be "1" - make sure you await fetchUser() first',
+		'🚨 user.id should be "1" - fetch the user before fetching orders',
 	)
 	assert.strictEqual(
 		result.orders[0].userId,
 		result.user.id,
-		'🚨 orders[0].userId should match user.id - chain promises correctly using .then() or await',
+		'🚨 orders[0].userId should match user.id - pass the user id into fetchOrders',
 	)
 })

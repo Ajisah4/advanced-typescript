@@ -12,8 +12,9 @@ type Product = {
 	price: number
 }
 
-// 🐨 Add explicit Promise-based return type annotations to these async functions
+// 🐨 Add explicit Promise return types:
 // 🦺 async function fetchUser(): Promise<User> { ... }
+// 🦺 async function fetchProducts(): Promise<Array<Product>> { ... }
 
 async function fetchUser() {
 	return new Promise<User>((resolve) => {
@@ -38,18 +39,16 @@ async function fetchProducts() {
 	})
 }
 
-// 🐨 Type the result of await correctly
-//    TypeScript should infer the types, but verify they're correct
+// 🐨 Make loadData return { user, products } after awaiting both helpers
 async function loadData() {
 	const user = await fetchUser()
 	const products = await fetchProducts()
 
 	// console.log('User:', user)
 	// console.log('Products:', products)
-
-	// 🐨 Export your functions so we can verify your work
 }
 
+// 🐨 Export fetchUser, fetchProducts, and loadData
 // export { fetchUser, fetchProducts, loadData }
 
 void loadData()

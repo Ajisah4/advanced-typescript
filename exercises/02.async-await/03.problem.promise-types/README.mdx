@@ -19,11 +19,20 @@ async function fetchEpisodeIds(): Promise<Array<string>> {
 
 🐨 Open <InlineFile file="index.ts" /> and:
 
-1. Add explicit return type annotations to all async functions
-2. Use `Promise<T>` to type the return values
-3. Ensure the types match what the functions actually return
+1. Add explicit return types:
+   - `fetchUser(): Promise<User>`
+   - `fetchProducts(): Promise<Array<Product>>`
+2. Update `loadData` so it returns `{ user, products }` after awaiting both
+   helpers
+3. Export `fetchUser`, `fetchProducts`, and `loadData`
 
-🦺 TypeScript will infer Promise types, but explicit annotations make your
-intent clear and help catch errors early.
+Fixtures already in the starter:
+
+- `fetchUser` resolves to
+  `{ id: '1', name: 'Alice', email: 'alice@example.com' }`
+- `fetchProducts` resolves to a non-empty product array (Laptop and Mouse)
+
+Completion check: `await loadData()` returns
+`{ user: { id: '1', ... }, products: [...] }` with at least one product.
 
 📜 [TypeScript Handbook - Async Functions](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-1-7.html#async-functions)

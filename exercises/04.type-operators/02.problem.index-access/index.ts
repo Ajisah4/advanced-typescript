@@ -21,17 +21,15 @@ type ApiResponse = {
 }
 
 // 🐨 Extract the type of `data`
-
 // 🐨 Extract the type of `user` from data
-
 // 🐨 Extract the type of `profile` from user
-
 // 🐨 Extract the type of a single post
+// 🐨 Extract a type that covers both the `status` and `error` property types
+// 🐨 Create a type that is all possible value types of the user type
 
-// 🐨 Extract just the string properties from ApiResponse
-
-// 🐨 Create a type that is all possible value types of UserType
-
-// 🐨 Export your test values so we can verify your work
+// 🐨 Create fixtures using your extracted types, then export them:
+// profile → { avatar: 'https://example.com/avatar.jpg', bio: 'Hello!' }
+// post → { id: '1', title: 'Hello World', published: true }
+// user → { id: '1', name: 'Alice', profile: { avatar: 'url', bio: 'bio' } }
 
 // export { profile, post, user }

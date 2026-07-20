@@ -3,25 +3,16 @@ import { test } from 'node:test'
 import * as solution from './index.ts'
 
 await test('partial, nullable, and mutable are exported', () => {
-	assert.ok(
-		'partial' in solution,
-		'🚨 Make sure you export "partial" - add: export { partial, nullable, mutable }',
-	)
-	assert.ok(
-		'nullable' in solution,
-		'🚨 Make sure you export "nullable" - add: export { partial, nullable, mutable }',
-	)
-	assert.ok(
-		'mutable' in solution,
-		'🚨 Make sure you export "mutable" - add: export { partial, nullable, mutable }',
-	)
+	assert.ok('partial' in solution, '🚨 Make sure you export "partial"')
+	assert.ok('nullable' in solution, '🚨 Make sure you export "nullable"')
+	assert.ok('mutable' in solution, '🚨 Make sure you export "mutable"')
 })
 
 await test('MyPartial makes all properties optional', () => {
 	assert.strictEqual(
 		solution.partial.name,
 		'Alice',
-		'🚨 partial.name should be "Alice" - use mapped type [K in keyof T]?: T[K] to make properties optional',
+		'🚨 partial.name should be "Alice"',
 	)
 })
 
@@ -29,17 +20,17 @@ await test('Nullable makes all properties nullable', () => {
 	assert.strictEqual(
 		solution.nullable.id,
 		null,
-		'🚨 nullable.id should be null - use [K in keyof T]: T[K] | null to make all properties nullable',
+		'🚨 nullable.id should be null',
 	)
 	assert.strictEqual(
 		solution.nullable.name,
 		'Bob',
-		'🚨 nullable.name should be "Bob" - mapped types can transform property types',
+		'🚨 nullable.name should be "Bob"',
 	)
 	assert.strictEqual(
 		solution.nullable.email,
 		null,
-		'🚨 nullable.email should be null - union with null makes properties nullable',
+		'🚨 nullable.email should be null',
 	)
 })
 
@@ -48,6 +39,6 @@ await test('Mutable removes readonly modifier', () => {
 	assert.strictEqual(
 		solution.mutable.name,
 		'Updated',
-		'🚨 mutable.name should be "Updated" - use -readonly modifier to remove readonly',
+		'🚨 mutable.name should be assignable and equal "Updated"',
 	)
 })

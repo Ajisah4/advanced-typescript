@@ -16,8 +16,14 @@ const fetchForecast = () =>
 
 🐨 Open <InlineFile file="index.ts" /> and:
 
-1. Create a `fetchUser` function that returns a `Promise<User>`
-2. The Promise should resolve after 1 second with a user object (you could do 10 milliseconds to make the tests faster if you want)
-3. The user object should have: `id: string`, `name: string`, `email: string`
+1. Create and export a `fetchUser` function that returns a `Promise<User>`
+2. Resolve after a short delay (about 1 second is fine; a few milliseconds is
+   fine for faster checks)
+3. Resolve with this user fixture:
+   - `id: '1'`
+   - `name: 'Alice'`
+   - `email: 'alice@example.com'`
+
+Completion check: calling `await fetchUser()` returns that exact user object.
 
 📜 [MDN - Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)

@@ -65,8 +65,16 @@ function App() {
 		const session = await createSession(timerState.phase, currentMinutes)
 		setSessions((currentSessions) => [session, ...currentSessions])
 
-		// 🐨 Use getNextPhase to decide the next phase
-		const nextPhase = getNextPhase(timerState.phase, focusStreak, settings)
+		// 🐨 Use getNextPhase to decide the next phase.
+		// 🐨 Count all completed focus sessions in `sessions`. Include the current
+		//    session when a focus phase has just completed. This is different from
+		//    `focusStreak`, which only counts consecutive recent focus sessions.
+		const completedFocusSessions = 0
+		const nextPhase = getNextPhase(
+			timerState.phase,
+			completedFocusSessions,
+			settings,
+		)
 		setTimerState({
 			status: 'completed',
 			phase: nextPhase,

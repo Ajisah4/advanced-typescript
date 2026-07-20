@@ -3,18 +3,12 @@ import { test } from 'node:test'
 import * as solution from './index.ts'
 
 await test('fetchUser, fetchProducts, and loadData are exported', () => {
-	assert.ok(
-		'fetchUser' in solution,
-		'🚨 Make sure you export "fetchUser" - add: export { fetchUser, fetchProducts, loadData }',
-	)
+	assert.ok('fetchUser' in solution, '🚨 Make sure you export "fetchUser"')
 	assert.ok(
 		'fetchProducts' in solution,
-		'🚨 Make sure you export "fetchProducts" - add: export { fetchUser, fetchProducts, loadData }',
+		'🚨 Make sure you export "fetchProducts"',
 	)
-	assert.ok(
-		'loadData' in solution,
-		'🚨 Make sure you export "loadData" - add: export { fetchUser, fetchProducts, loadData }',
-	)
+	assert.ok('loadData' in solution, '🚨 Make sure you export "loadData"')
 })
 
 await test(
@@ -23,32 +17,15 @@ await test(
 	async () => {
 		const user = await solution.fetchUser()
 
-		assert.ok(
-			'id' in user,
-			'🚨 user should have an id property - make sure your async function returns Promise<User>',
-		)
-		assert.ok(
-			'name' in user,
-			'🚨 user should have a name property - make sure your async function returns Promise<User>',
-		)
-		assert.ok(
-			'email' in user,
-			'🚨 user should have an email property - make sure your async function returns Promise<User>',
-		)
-		assert.strictEqual(
-			user.id,
-			'1',
-			'🚨 user.id should be "1" - check your Promise return type',
-		)
-		assert.strictEqual(
-			user.name,
-			'Alice',
-			'🚨 user.name should be "Alice" - check your Promise return type',
-		)
+		assert.ok('id' in user, '🚨 user should have an id property')
+		assert.ok('name' in user, '🚨 user should have a name property')
+		assert.ok('email' in user, '🚨 user should have an email property')
+		assert.strictEqual(user.id, '1', '🚨 user.id should be "1"')
+		assert.strictEqual(user.name, 'Alice', '🚨 user.name should be "Alice"')
 		assert.strictEqual(
 			user.email,
 			'alice@example.com',
-			'🚨 user.email should be "alice@example.com" - check your Promise return type',
+			'🚨 user.email should be "alice@example.com"',
 		)
 	},
 )
@@ -62,23 +39,17 @@ await test(
 		assert.strictEqual(
 			Array.isArray(products),
 			true,
-			'🚨 products should be an array - make sure your async function returns Promise<Array<Product>>',
+			'🚨 products should be an array',
 		)
-		assert.ok(
-			products.length > 0,
-			'🚨 products should have at least one item - check your Promise return type',
-		)
-		assert.ok(
-			'id' in products[0],
-			'🚨 products[0] should have an id property - check your Promise return type',
-		)
+		assert.ok(products.length > 0, '🚨 products should have at least one item')
+		assert.ok('id' in products[0], '🚨 products[0] should have an id property')
 		assert.ok(
 			'name' in products[0],
-			'🚨 products[0] should have a name property - check your Promise return type',
+			'🚨 products[0] should have a name property',
 		)
 		assert.ok(
 			'price' in products[0],
-			'🚨 products[0] should have a price property - check your Promise return type',
+			'🚨 products[0] should have a price property',
 		)
 	},
 )
@@ -93,11 +64,11 @@ await test(
 		assert.strictEqual(
 			user.id,
 			'1',
-			'🚨 result.user.id should be "1" - make sure loadData returns an object with user and products',
+			'🚨 result.user.id should be "1" - loadData should return { user, products }',
 		)
 		assert.ok(
 			products.length > 0,
-			'🚨 result.products should have items - make sure loadData returns an object with user and products',
+			'🚨 result.products should have items - loadData should return { user, products }',
 		)
 	},
 )

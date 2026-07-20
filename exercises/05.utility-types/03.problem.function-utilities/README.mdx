@@ -20,9 +20,20 @@ type ScoreArgs = Parameters<typeof scoreGame>
 
 🐨 Open <InlineFile file="index.ts" /> and:
 
-1. Use `ReturnType` to extract a function's return type
-2. Use `Parameters` to get a function's parameter types
-3. Use `Awaited` to unwrap Promise types
-4. Create a wrapper function that preserves types
+1. Create `NewUser` from `createUser`'s return type
+2. Create `CreateUserParams` from `createUser`'s parameters
+3. Create `FetchUserResult` as the **resolved** value of `fetchUser` (unwrap
+   the Promise)
+4. Create `ProcessDataArgs` from `processData`'s parameters
+5. Create `loggedCreateUser` that:
+   - Accepts the same parameters as `createUser`
+   - Returns the same shape as `createUser`
+   - Can log the args, then call `createUser`
+6. Export `loggedCreateUser`
+
+Completion check:
+`loggedCreateUser('Alice', 'alice@example.com', 30)` returns an object with
+`id`, `name: 'Alice'`, `email: 'alice@example.com'`, `age: 30`, and
+`createdAt`.
 
 📜 [TypeScript Handbook - ReturnType](https://www.typescriptlang.org/docs/handbook/utility-types.html#returntypetype)

@@ -14,11 +14,19 @@ type Optional<T> = { [K in keyof T]?: T[K] }
 type OptionalAlbum = Optional<Album>
 ```
 
-🐨 Open <InlineFile file="index.ts" /> and:
+🐨 Open <InlineFile file="index.ts" /> and create:
 
-1. Recreate `Partial<T>` from scratch
-2. Recreate `Required<T>` from scratch
-3. Create a `Nullable<T>` that makes all properties nullable
-4. Create a `Mutable<T>` that removes `readonly`
+1. `MyPartial<T>` — every property optional
+2. `MyRequired<T>` — every property required (optional markers removed)
+3. `Nullable<T>` — every property becomes `Original | null`
+4. `Mutable<T>` — every `readonly` property becomes writable
+5. `Stringify<T>` — every property becomes `string`
+
+Then create and export these fixtures:
+
+- `partial`: `{ name: 'Alice' }`
+- `nullable`: `{ id: null, name: 'Bob', email: null, age: 30 }`
+- `mutable`: a full writable user object where `mutable.name = 'Updated'`
+  type-checks
 
 📜 [TypeScript Handbook - Mapped Types](https://www.typescriptlang.org/docs/handbook/2/mapped-types.html)

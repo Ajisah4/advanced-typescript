@@ -29,10 +29,22 @@ type PublishedOnly = Exclude<Status, 'draft' | null>
 
 🐨 Open <InlineFile file="index.ts" /> and:
 
-1. Use `Record` to create a config type
-2. Use `Readonly` to make a user immutable
-3. Use `Omit` to create a user type without id
-4. Use `Required` to make optional properties required
-5. Use `Exclude`, `Extract`, and `NonNullable` on union types
+1. Create `Config` as string keys → number values, then a `config` value
+   `{ timeout: 5000, retries: 3 }`
+2. Create `ReadonlyUser` and a `readonlyUser` fixture
+   `{ id: '1', name: 'Alice', email: 'a@b.com' }`
+3. Create `UserWithoutId` and a `newUser` fixture
+   `{ name: 'Bob', email: 'b@b.com' }`
+4. Create `RequiredUser` and a `fullUser` fixture that includes required
+   `bio: 'Hello!'` and `website: 'https://alice.dev'`
+5. For `Status = 'pending' | 'active' | 'inactive' | 'deleted' | null | undefined`:
+   - `ActiveStatus` — Status values that remain after removing deleted and
+     nullish entries
+   - `ValidStatus` — removes `null` and `undefined`
+   - `StringStatus` — keeps only the string variants
+6. Create fixtures `status = 'active'` (typed as `ValidStatus`) and
+   `activeStatus = 'pending'` (typed as `ActiveStatus`)
+7. Export `config`, `readonlyUser`, `newUser`, `fullUser`, `status`, and
+   `activeStatus`
 
 📜 [TypeScript Handbook - Utility Types](https://www.typescriptlang.org/docs/handbook/utility-types.html)

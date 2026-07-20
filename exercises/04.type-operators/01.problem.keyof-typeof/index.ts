@@ -9,9 +9,9 @@ type User = {
 
 // 🐨 Create a type `UserKey` that is the union of User's keys
 
-// 🐨 Create a function `getUserProperty` that:
-// - Takes a user and a key (constrained to UserKey)
-// - Returns the value at that key
+// 🐨 Create `getUserProperty(user, key)`:
+//    - key is constrained to UserKey
+//    - returns the value at that key with the matching value type
 
 // Using typeof with values
 const config = {
@@ -21,19 +21,17 @@ const config = {
 }
 
 // 🐨 Create a type `Config` based on the config object
-
 // 🐨 Create a type `ConfigKey` from Config's keys
 
 // Using as const for literal types
 // 🐨 Preserve literal types for the httpMethods array
 const httpMethods = ['GET', 'POST', 'PUT', 'DELETE']
 
-// 🐨 Create a type `HttpMethod` from the array
+// 🐨 Create a type `HttpMethod` from the array elements
+//    (a union of those literal method names, not plain string)
 
-// 🐨 Create a function `makeRequest` that:
-// - Takes a method (constrained to HttpMethod) and url (string)
-// - Logs and returns a string like `${method} ${url}`
+// 🐨 Create `makeRequest(method, url)` that returns e.g. "GET /api/users"
+//    method should be constrained to HttpMethod
 
-// 🐨 Export your functions and values so we can verify your work
-
+// 🐨 Export getUserProperty, makeRequest, config, and httpMethods
 // export { getUserProperty, makeRequest, config, httpMethods }

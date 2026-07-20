@@ -18,8 +18,17 @@ type RatingType = Recipe['author']['rating'] // 1 | 2 | 3 | 4 | 5
 
 🐨 Open <InlineFile file="index.ts" /> and:
 
-1. Extract nested property types
-2. Use unions to get multiple property types at once
-3. Combine with `keyof` for flexible access
+1. Extract nested property types from `ApiResponse` (`data`, `user`, `profile`,
+   and a single post)
+2. Extract a type that covers both the `status` and `error` property types
+3. Create a type for all possible value types of the nested user type
+4. Create and export these fixtures typed with your extracted types:
+   - `profile`:
+     `{ avatar: 'https://example.com/avatar.jpg', bio: 'Hello!' }`
+   - `post`: `{ id: '1', title: 'Hello World', published: true }`
+   - `user`:
+     `{ id: '1', name: 'Alice', profile: { avatar: 'url', bio: 'bio' } }`
+
+Completion check: those three exports match the fixtures above.
 
 📜 [TypeScript Handbook - Indexed Access Types](https://www.typescriptlang.org/docs/handbook/2/indexed-access-types.html)

@@ -3,10 +3,7 @@ import { test } from 'node:test'
 import * as solution from './index.ts'
 
 await test('fetchUser is exported', () => {
-	assert.ok(
-		'fetchUser' in solution,
-		'🚨 Make sure you export "fetchUser" - add: export { fetchUser }',
-	)
+	assert.ok('fetchUser' in solution, '🚨 Make sure you export "fetchUser"')
 })
 
 await test(

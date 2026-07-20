@@ -45,8 +45,9 @@ function fetchOrders(userId: string): Promise<Array<Order>> {
 }
 
 async function loadUserData(userId: string) {
-	// 🐨 Handle errors for the async operations
-	//    Optionally add cleanup that always runs
+	// 🐨 Wrap the awaits in try/catch (and optionally finally)
+	//    Catch errors internally — do not rethrow
+	//    fetchUser('1') succeeds; other ids reject
 
 	const user = await fetchUser(userId)
 	// console.log('User:', user)
@@ -57,6 +58,5 @@ async function loadUserData(userId: string) {
 
 void loadUserData('1')
 
-// 🐨 Export your function so we can verify your work
-
+// 🐨 Export loadUserData so we can verify your work
 // export { loadUserData }
