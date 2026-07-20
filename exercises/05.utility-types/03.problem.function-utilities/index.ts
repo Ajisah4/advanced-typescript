@@ -13,17 +13,14 @@ function processData(data: Array<string>, options: { limit: number }): number {
 	return Math.min(data.length, options.limit)
 }
 
-// 🐨 Create a type `NewUser` that matches the return type of createUser
+// 🐨 Create NewUser from createUser's return type
+// 🐨 Create CreateUserParams from createUser's parameter tuple
+// 🐨 Create FetchUserResult for fetchUser's resolved value
+// 🐨 Create ProcessDataArgs from processData's parameter tuple
 
-// 🐨 Create a type `CreateUserParams` that matches createUser's parameters
+// 🐨 Create loggedCreateUser:
+//    - same parameters and return type as createUser
+//    - logs the args, then delegates to createUser
 
-// 🐨 Create a type `FetchUserResult` for the resolved value of fetchUser
-
-// 🐨 Create a type `ProcessDataArgs` that matches processData's parameters
-
-// 🐨 Create a wrapper function that logs calls to createUser
-// It should have the same parameters and return type as createUser
-
-// 🐨 Export your function so we can verify your work
-
+// 🐨 Export loggedCreateUser so we can verify your work
 // export { loggedCreateUser }

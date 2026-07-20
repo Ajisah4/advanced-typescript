@@ -40,8 +40,10 @@ function fetchOrders(userId: string): Promise<Array<Order>> {
 	})
 }
 
-// 🐨 Create fetchUserAndOrders() that chains the promises and returns:
-//    { user, orders }
+// 🐨 Create fetchUserAndOrders() that:
+//    1. Calls fetchUser()
+//    2. Passes user.id into fetchOrders(userId)
+//    3. Returns Promise<{ user: User; orders: Array<Order> }>
 
 // 🐨 verify your work with:
 // fetchUserAndOrders().then(({ user, orders }) => {
@@ -50,5 +52,4 @@ function fetchOrders(userId: string): Promise<Array<Order>> {
 // })
 
 // 🐨 Export fetchUserAndOrders so we can verify your work
-
 // export { fetchUserAndOrders }

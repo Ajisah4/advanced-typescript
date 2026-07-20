@@ -27,8 +27,17 @@ Where `infer X` captures the type at that position.
 
 🐨 Open <InlineFile file="index.ts" /> and:
 
-1. Create `ArrayElement<T>` to extract element types from arrays
-2. Create `PromiseResult<T>` to extract resolved types from Promises
-3. Create `FunctionReturn<T>` to extract return types from functions
+1. Create `ArrayElement<T>` — element type for arrays, otherwise `never`
+2. Create `PromiseResult<T>` — resolved type for Promises, otherwise `T`
+3. Create `FunctionReturn<T>` — return type for functions, otherwise `never`
+4. Add a runtime `fetchUser` that resolves to
+   `{ id: '1', name: 'Alice' }` and is typed as
+   `Promise<{ id: string; name: string }>`
+5. Create `FetchUserResult` by deriving it from `fetchUser`'s result type with
+   `PromiseResult` (so it resolves to the user object shape, not a Promise)
+6. Export `fetchUser`
+
+Completion check: `await fetchUser()` returns
+`{ id: '1', name: 'Alice' }`.
 
 📜 [TypeScript Handbook - Inferring Within Conditional Types](https://www.typescriptlang.org/docs/handbook/2/conditional-types.html#inferring-within-conditional-types)

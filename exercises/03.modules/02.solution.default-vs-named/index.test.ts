@@ -5,16 +5,10 @@ import * as solution from './index.ts'
 await test('formatCurrency, formatDate, and Formatter are exported', () => {
 	assert.ok(
 		'formatCurrency' in solution,
-		'🚨 Make sure you export "formatCurrency" - add: export { formatCurrency, formatDate, Formatter }',
+		'🚨 Make sure you export "formatCurrency"',
 	)
-	assert.ok(
-		'formatDate' in solution,
-		'🚨 Make sure you export "formatDate" - add: export { formatCurrency, formatDate, Formatter }',
-	)
-	assert.ok(
-		'Formatter' in solution,
-		'🚨 Make sure you export "Formatter" - add: export { formatCurrency, formatDate, Formatter }',
-	)
+	assert.ok('formatDate' in solution, '🚨 Make sure you export "formatDate"')
+	assert.ok('Formatter' in solution, '🚨 Make sure you export "Formatter"')
 })
 
 await test('formatCurrency formats numbers as currency', () => {
@@ -22,7 +16,7 @@ await test('formatCurrency formats numbers as currency', () => {
 	assert.strictEqual(
 		result,
 		'$99.99',
-		'🚨 result should be "$99.99" - import formatCurrency correctly (default vs named export)',
+		'🚨 formatCurrency(99.99) should return "$99.99"',
 	)
 })
 
@@ -32,7 +26,7 @@ await test('formatDate formats dates correctly', () => {
 	const result = solution.formatDate(date)
 	assert.ok(
 		/1\/15\/2024/.test(result),
-		'🚨 result should match "1/15/2024" - import formatDate correctly (default vs named export)',
+		'🚨 formatDate should include "1/15/2024" for January 15, 2024',
 	)
 })
 
@@ -41,12 +35,12 @@ await test('Formatter class formats currency and dates', () => {
 	assert.strictEqual(
 		formatter.formatCurrency(199.99),
 		'$199.99',
-		'🚨 formatCurrency should return "$199.99" - import Formatter class correctly',
+		'🚨 Formatter#formatCurrency(199.99) should return "$199.99"',
 	)
 	// Use explicit time to avoid timezone issues
 	const date = new Date(2024, 0, 15, 12, 0, 0)
 	assert.ok(
 		/1\/15\/2024/.test(formatter.formatDate(date)),
-		'🚨 formatDate should match "1/15/2024" - import Formatter class correctly',
+		'🚨 Formatter#formatDate should include "1/15/2024" for January 15, 2024',
 	)
 })

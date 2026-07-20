@@ -24,7 +24,14 @@ async function loadCookingData() {
 }
 ```
 
-🐨 Open <InlineFile file="index.ts" /> and refactor `loadUserData` so it
-uses `async`/`await` instead of `.then()` chains.
+🐨 Open <InlineFile file="index.ts" /> and:
+
+1. Refactor `loadUserData` to use `async`/`await` instead of nested `.then()`
+2. Keep the same return shape: `{ user, orders }`
+3. Await `fetchUser()`, then await `fetchOrders(user.id)`
+4. Export `loadUserData`
+
+Completion check: `await loadUserData()` returns Alice (`id: '1'`) and an
+orders array whose first order has `userId: '1'`.
 
 📜 [MDN - async function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function)

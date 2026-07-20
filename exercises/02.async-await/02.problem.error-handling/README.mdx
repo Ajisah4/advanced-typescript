@@ -25,8 +25,20 @@ async function loadSettings() {
 
 🐨 Open <InlineFile file="index.ts" /> and:
 
-1. Wrap the async operations in a `try` block
-2. Add a `catch` block to handle errors
-3. Optionally add a `finally` block for cleanup
+1. Wrap the `fetchUser` / `fetchOrders` awaits in a `try` block
+2. Add a `catch` that handles failures internally (do **not** rethrow)
+3. Optionally add a `finally` block for cleanup logging
+4. Export `loadUserData`
+
+Behavior of the provided helpers:
+
+- `fetchUser('1')` resolves to Alice
+- `fetchUser` with any other id rejects with `Error('Failed to fetch user')`
+
+Completion checks:
+
+- `await loadUserData('1')` completes without throwing
+- `await loadUserData('2')` also completes without throwing (error handled
+  inside the function)
 
 📜 [MDN - try...catch](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch)

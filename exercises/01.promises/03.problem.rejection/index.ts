@@ -31,9 +31,10 @@ function getUserProfile(id: string): Promise<UserProfile> {
 	return fetchUser(id).then((user) => ({ status: 'success', user }) as const)
 }
 
-// 🐨 Update getUserProfile to handle rejections and return an error status
-// 💰 return { status: 'error', message: error.message }
-// 💰 if error isn't an Error, use 'Unknown error'
+// 🐨 Update getUserProfile to handle rejections with .catch()
+//    On rejection, return { status: 'error', message }
+//    💰 Prefer error.message when the rejection is an Error; otherwise
+//       use 'Unknown error'
 
 // 🐨 Export fetchUser and getUserProfile so we can verify your work
 // export { fetchUser, getUserProfile }

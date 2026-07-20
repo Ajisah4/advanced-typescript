@@ -24,7 +24,13 @@ fetchPlaylist()
 
 🐨 Open <InlineFile file="index.ts" /> and:
 
-1. Create `fetchUserAndOrders` to chain the promises and return `{ user, orders }`
-2. Export `fetchUserAndOrders`
+1. Create and export `fetchUserAndOrders` that:
+   - Calls the provided `fetchUser`
+   - Then calls `fetchOrders` with that user's `id`
+   - Returns `{ user, orders }`
+2. Keep using `.then()` chaining for this step (no `async`/`await` yet)
+
+Completion check: `await fetchUserAndOrders()` returns a user with `id: '1'`
+and an `orders` array whose first order has `userId` equal to that same id.
 
 📜 [MDN - Promise.prototype.then()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then)

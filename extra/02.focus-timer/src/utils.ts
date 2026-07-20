@@ -68,7 +68,8 @@ export const seedSessions: Array<Session> = [
 	},
 ]
 
-// 🐨 Implement formatDuration to show mm:ss for a duration in ms
+// 🐨 Implement formatDuration as zero-padded mm:ss for a duration in ms
+//    0 → '00:00', 65000 → '01:05', 1500000 → '25:00'
 export function formatDuration(ms: number): string {
 	void ms
 	return '00:00'
@@ -98,7 +99,9 @@ export function applySettingsPatch(
 	return { ...settings, ...patch }
 }
 
-// 🐨 Implement getNextPhase based on the current phase and session count
+// 🐨 Implement getNextPhase using the transition table in README.mdx
+//    completedFocusSessions = focus sessions completed so far, including the
+//    focus you just finished when current is 'focus'
 export function getNextPhase(
 	current: TimerPhase,
 	completedFocusSessions: number,
@@ -132,6 +135,7 @@ export async function createSession(
 }
 
 // 🐨 Implement groupSessionsByPhase using SessionsByPhase
+//    Return { focus: [...], shortBreak: [...], longBreak: [...] }
 export function groupSessionsByPhase(
 	sessions: Array<Session>,
 ): SessionsByPhase {
@@ -143,7 +147,9 @@ export function groupSessionsByPhase(
 	} as SessionsByPhase
 }
 
-// 🐨 Implement getSessionStreak that counts consecutive focus sessions
+// 🐨 Implement getSessionStreak: count consecutive focus sessions from the
+//    start of the array (newest first). Example:
+//    [{ phase: 'focus' }, { phase: 'focus' }, { phase: 'shortBreak' }] → 2
 export function getSessionStreak(sessions: Array<Session>): number {
 	void sessions
 	return 0

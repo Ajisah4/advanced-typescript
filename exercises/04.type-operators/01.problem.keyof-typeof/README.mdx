@@ -18,9 +18,23 @@ type Size = (typeof sizes)[number]
 
 🐨 Open <InlineFile file="index.ts" /> and:
 
-1. Use `keyof` to get the keys of an object type
-2. Use `typeof` to extract types from values
-3. Combine `typeof` with `as const` for literal types
-4. Create type-safe accessor functions
+1. Create `UserKey` as the union of `User`'s keys
+2. Create `getUserProperty(user, key)` that returns the value at that key,
+   with `key` constrained to `UserKey`
+3. Create `Config` from the existing `config` value, and `ConfigKey` from
+   `Config`'s keys
+4. Preserve literal types on `httpMethods`, then create `HttpMethod` from that
+   array
+5. Create `makeRequest(method, url)` that returns a string like
+   `"GET /api/users"`
+6. Export `getUserProperty`, `makeRequest`, `config`, and `httpMethods`
+
+Completion checks:
+
+- `getUserProperty({ id: '1', name: 'Alice', email: 'a@b.com', age: 30 }, 'name')`
+  → `'Alice'`
+- `makeRequest('GET', '/api/users')` → `'GET /api/users'`
+- `config.apiUrl` stays `'https://api.example.com'` and `config.timeout` stays
+  `5000`
 
 📜 [TypeScript Handbook - Keyof](https://www.typescriptlang.org/docs/handbook/2/keyof-types.html)

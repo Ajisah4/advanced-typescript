@@ -5,7 +5,7 @@ import * as solution from './index.ts'
 await test('loadUserData is exported', () => {
 	assert.ok(
 		'loadUserData' in solution,
-		'🚨 Make sure you export "loadUserData" - add: export { loadUserData }',
+		'🚨 Make sure you export "loadUserData"',
 	)
 })
 
@@ -91,12 +91,12 @@ await test(
 		assert.strictEqual(
 			user.id,
 			'1',
-			'🚨 result.user.id should be "1" - use await to get user data sequentially',
+			'🚨 result.user.id should be "1" - return both user and orders from loadUserData',
 		)
 		assert.strictEqual(
 			orders[0].userId,
 			user.id,
-			'🚨 result.orders[0].userId should match result.user.id - await fetchOrders after fetchUser',
+			'🚨 result.orders[0].userId should match result.user.id - fetch orders with the user id',
 		)
 	},
 )

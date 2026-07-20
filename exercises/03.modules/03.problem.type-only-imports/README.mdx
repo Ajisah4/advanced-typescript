@@ -13,11 +13,13 @@ export type Book = { title: string; pages: number }
 import { type Book } from './types.ts'
 ```
 
-🐨 Open <InlineFile file="types.ts" /> and:
+🐨 Open <InlineFile file="types.ts" /> and <InlineFile file="index.ts" /> and:
 
-1. Move the `User` and `Product` types to `types.ts`
-2. Export them using named exports
-3. Import them in `index.ts` using type-only imports
+1. Move the `User` and `Product` types into `types.ts` and export them
+2. Import them in `index.ts` using type-only import syntax (no runtime value
+   imports from `types.ts`)
+3. Keep the local `user` / `product` values and display helpers working
+4. Export `displayUser` and `displayProduct` from `index.ts`
 
 <callout-info>
 	When importing **types only** (not values), use `import { type X }` syntax.
@@ -25,5 +27,8 @@ import { type Book } from './types.ts'
 	checking and should be erased at runtime. This is required when running
 	TypeScript natively with Node.js.
 </callout-info>
+
+Completion check: both display helpers remain callable and are exported from
+`index.ts`, with no runtime value imports from `types.ts`.
 
 📜 [MDN - ES Modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules)

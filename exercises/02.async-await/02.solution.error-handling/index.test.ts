@@ -5,7 +5,7 @@ import * as solution from './index.ts'
 await test('loadUserData is exported', () => {
 	assert.ok(
 		'loadUserData' in solution,
-		'🚨 Make sure you export "loadUserData" - add: export { loadUserData }',
+		'🚨 Make sure you export "loadUserData"',
 	)
 })
 
@@ -30,7 +30,7 @@ await test(
 		// The function should handle all errors internally, never throwing
 		assert.ok(
 			!errorPropagated,
-			'🚨 loadUserData should catch errors internally with try/catch - errors should not propagate',
+			'🚨 loadUserData should catch errors internally - errors should not propagate to the caller',
 		)
 	},
 )

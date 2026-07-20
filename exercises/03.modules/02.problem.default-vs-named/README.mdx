@@ -22,10 +22,19 @@ export default class UnitFormatter {
 }
 ```
 
-🐨 Open <InlineFile file="utils.ts" /> and:
+🐨 Open <InlineFile file="utils.ts" /> and <InlineFile file="index.ts" /> and:
 
-1. Export `formatCurrency` as a **named export**
-2. Export `formatDate` as a **named export**
-3. Export a `Formatter` class as the **default export**
+1. In `utils.ts`:
+   - Export `formatCurrency` and `formatDate` as **named** exports
+   - Export the `Formatter` class as the **default** export
+2. In `index.ts`:
+   - Import the named helpers and the default `Formatter`
+   - Re-export `formatCurrency`, `formatDate`, and `Formatter`
+
+Observable values from the provided implementations:
+
+- `formatCurrency(99.99)` → `'$99.99'`
+- `formatDate(new Date(2024, 0, 15, 12, 0, 0))` matches `1/15/2024`
+- `new Formatter()` exposes the same formatting methods
 
 📜 [MDN - Export](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export)

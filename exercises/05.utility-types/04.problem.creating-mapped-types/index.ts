@@ -14,15 +14,11 @@ type ReadonlyUser = {
 	readonly age: number
 }
 
-// 🐨 Create MyPartial<T> - makes all properties optional
-
-// 🐨 Create MyRequired<T> - makes all properties required (removes ?)
-
-// 🐨 Create Nullable<T> - makes all properties T[K] | null
-
-// 🐨 Create Mutable<T> - removes readonly from all properties
-
-// 🐨 Create Stringify<T> - converts all property types to string
+// 🐨 Create MyPartial<T> — all properties optional
+// 🐨 Create MyRequired<T> — all properties required
+// 🐨 Create Nullable<T> — all properties Original | null
+// 🐨 Create Mutable<T> — remove readonly from all properties
+// 🐨 Create Stringify<T> — all properties become string
 
 // Test your types
 // type PartialUser = MyPartial<User>
@@ -31,6 +27,9 @@ type ReadonlyUser = {
 // type MutableUser = Mutable<ReadonlyUser>
 // type StringUser = Stringify<User>
 
-// 🐨 Export your test values so we can verify your work
+// 🐨 Create and export fixtures:
+// partial → { name: 'Alice' }
+// nullable → { id: null, name: 'Bob', email: null, age: 30 }
+// mutable → a full writable user object (reassigning .name should type-check)
 
 // export { partial, nullable, mutable }

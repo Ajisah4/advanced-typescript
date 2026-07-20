@@ -12,8 +12,8 @@ type Product = {
 	price: number
 }
 
-// 🐨 Move the User and Product types into `types.ts`
-//    Export them there and import them back here without runtime imports
+// 🐨 Move User and Product into types.ts, export them there,
+//    then bring them back with a type-only import (no runtime values)
 
 function displayUser(user: User) {
 	console.log(`User: ${user.name} (${user.email})`)
@@ -38,6 +38,5 @@ const product: Product = {
 displayUser(user)
 displayProduct(product)
 
-// 🐨 Export your functions so we can verify your work
-
+// 🐨 Export displayUser and displayProduct so we can verify your work
 // export { displayUser, displayProduct }

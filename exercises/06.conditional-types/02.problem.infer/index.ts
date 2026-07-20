@@ -3,14 +3,23 @@
 // The `infer` keyword lets you extract types from within other types.
 // Think of it as "pattern matching" for types.
 
-// 🐨 Create ArrayElement<T> - extracts the element type from an array
-// If T is an array, extract its element type. Otherwise, return never.
+// 🐨 Create ArrayElement<T>
+//    - if T is an array, extract its element type
+//    - otherwise never
+//    Examples: ArrayElement<Array<number>> → number
+//              ArrayElement<string> → never
 
-// 🐨 Create PromiseResult<T> - extracts the resolved type of a Promise
-// If T is a Promise, extract what it resolves to. Otherwise, return T as-is.
+// 🐨 Create PromiseResult<T>
+//    - if T is a Promise, extract its resolved type
+//    - otherwise return T as-is
+//    Examples: PromiseResult<Promise<string>> → string
+//              PromiseResult<boolean> → boolean
 
-// 🐨 Create FunctionReturn<T> - extracts the return type of a function
-// If T is a function, extract its return type. Otherwise, return never.
+// 🐨 Create FunctionReturn<T>
+//    - if T is a function, extract its return type
+//    - otherwise never
+//    Examples: FunctionReturn<() => string> → string
+//              FunctionReturn<string> → never
 
 // Test types
 type Numbers = Array<number>
@@ -21,15 +30,16 @@ type Users = Array<{ id: string; name: string }>
 // type N = ArrayElement<Numbers>     // number
 // type S = ArrayElement<Strings>     // string
 // type U = ArrayElement<Users>       // { id: string; name: string }
-// type X = ArrayElement<string>      // never (not an array)
+// type X = ArrayElement<string>      // never
 
 // type P1 = PromiseResult<Promise<string>>   // string
-// type P2 = PromiseResult<Promise<number>>   // number
-// type P3 = PromiseResult<boolean>           // boolean (not a promise, returned as-is)
+// type P2 = PromiseResult<boolean>           // boolean
 
 // type R1 = FunctionReturn<() => string>     // string
 // type R2 = FunctionReturn<(x: number) => boolean>  // boolean
 
-// 🐨 Export your function so we can verify your work
-
+// 🐨 Implement async fetchUser(): Promise<{ id: string; name: string }>
+//    that resolves to { id: '1', name: 'Alice' }
+// 🐨 Create FetchUserResult by applying PromiseResult to fetchUser's result type
+// 🐨 Export fetchUser
 // export { fetchUser }

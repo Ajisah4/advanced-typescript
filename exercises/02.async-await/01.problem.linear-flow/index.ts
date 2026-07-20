@@ -48,8 +48,9 @@ function loadUserData() {
 	})
 }
 
-// 🐨 Refactor `loadUserData` so the async flow is linear (no nested promise chains)
+// 🐨 Refactor `loadUserData` to async/await (linear, no nested .then())
+//    Keep the same sequence and return shape: fetch user, then orders for
+//    that user id, then return { user, orders }
 
-// 🐨 Export your function so we can verify your work
-
+// 🐨 Export loadUserData so we can verify your work
 // export { loadUserData }

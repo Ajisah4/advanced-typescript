@@ -18,8 +18,19 @@ type ArticlePatch = Partial<Pick<Article, 'title' | 'body'>>
 
 🐨 Open <InlineFile file="index.ts" /> and:
 
-1. Use `Partial<User>` to create a type where all properties are optional
-2. Use `Pick<User, 'name' | 'email'>` to create a type with only name and email
-3. Combine them to create `UserUpdate` that only allows updating name and email
+1. Create `PartialUser` — all `User` properties optional
+2. Create `UserNameEmail` — only `name` and `email`
+3. Create `UserUpdate` — optional updates limited to `name` and/or `email`
+4. Remove the `@ts-expect-error` once `UserUpdate` exists
+5. Export `updateUser`
+
+Observable behavior for the provided `user` fixture:
+
+- `updateUser(user, { name: 'Alice Smith' })` → name becomes `'Alice Smith'`,
+  email stays `'alice@example.com'`, id stays `'1'`
+- `updateUser(user, { email: 'alice.smith@example.com' })` → email updates,
+  name stays `'Alice'`
+- Updating both fields at once also works
+- Updating `id` should be a type error
 
 📜 [TypeScript Handbook - Utility Types](https://www.typescriptlang.org/docs/handbook/utility-types.html)

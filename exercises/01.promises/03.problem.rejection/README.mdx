@@ -7,12 +7,24 @@ Rejected Promises should be caught so we can return a friendly error state.
 
 🐨 Open <InlineFile file="index.ts" /> and:
 
-1. Update `getUserProfile` to handle rejections with `.catch()`
-2. Return an error result when the Promise rejects
-3. Keep the `id` parameter flowing through both functions
-4. Export `fetchUser` and `getUserProfile`
+1. Keep `fetchUser(id)` as provided:
+   - `id === '1'` resolves to Alice (`id: '1'`, `name: 'Alice'`,
+     `email: 'alice@example.com'`)
+   - any other id rejects with `Error('User not found')`
+2. Update `getUserProfile(id)` to handle rejections with `.catch()`
+3. Return shapes:
+   - success: `{ status: 'success', user }`
+   - error: `{ status: 'error', message }` where `message` is
+     `error.message` when the rejection is an `Error`, otherwise
+     `'Unknown error'`
+4. Export both `fetchUser` and `getUserProfile`
 
-💰 For the error result, return a `{ status: 'error', message: string }` object.
-If the value isn't an `Error`, use `'Unknown error'` as the message.
+Completion checks:
+
+- `await getUserProfile('1')` → `{ status: 'success', user: { id: '1', ... } }`
+- `await getUserProfile('missing')` →
+  `{ status: 'error', message: 'User not found' }`
+- `await fetchUser('missing')` still rejects (do not swallow that rejection
+  inside `fetchUser` itself)
 
 📜 [MDN - Promise.prototype.catch()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/catch)
