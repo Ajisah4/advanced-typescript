@@ -16,6 +16,6 @@ class Formatter {
 	}
 }
 
-export { formatCurrency, formatDate }
+export { formatCurrency, formatDate, Formatter }
 
 export default Formatter
