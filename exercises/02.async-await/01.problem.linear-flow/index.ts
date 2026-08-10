@@ -1,4 +1,4 @@
-// Linear Flow with Async/Await
+/// Linear Flow with Async/Await
 
 type User = {
 	id: string
@@ -40,17 +40,14 @@ function fetchOrders(userId: string): Promise<Array<Order>> {
 	})
 }
 
-function loadUserData() {
-	return fetchUser().then((user) => {
-		return fetchOrders(user.id).then((orders) => {
-			return { user, orders }
-		})
-	})
+async function loadUserData(): Promise<{
+	user: User
+	orders: Array<Order>
+}> {
+	const user = await fetchUser()
+	const orders = await fetchOrders(user.id)
+
+	return { user, orders }
 }
 
-// 🐨 Refactor `loadUserData` to async/await (linear, no nested .then())
-//    Keep the same sequence and return shape: fetch user, then orders for
-//    that user id, then return { user, orders }
-
-// 🐨 Export loadUserData so we can verify your work
-// export { loadUserData }
+export { loadUserData }

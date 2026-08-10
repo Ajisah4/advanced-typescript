@@ -12,11 +12,8 @@ type Product = {
 	price: number
 }
 
-// 🐨 Add explicit Promise return types:
-// 🦺 async function fetchUser(): Promise<User> { ... }
-// 🦺 async function fetchProducts(): Promise<Array<Product>> { ... }
-
-async function fetchUser() {
+// Explicit Promise<User> return type
+async function fetchUser(): Promise<User> {
 	return new Promise<User>((resolve) => {
 		setTimeout(() => {
 			resolve({
@@ -28,7 +25,8 @@ async function fetchUser() {
 	})
 }
 
-async function fetchProducts() {
+// Explicit Promise<Array<Product>> return type
+async function fetchProducts(): Promise<Array<Product>> {
 	return new Promise<Array<Product>>((resolve) => {
 		setTimeout(() => {
 			resolve([
@@ -39,16 +37,17 @@ async function fetchProducts() {
 	})
 }
 
-// 🐨 Make loadData return { user, products } after awaiting both helpers
-async function loadData() {
+// Return both user and products
+async function loadData(): Promise<{
+	user: User
+	products: Array<Product>
+}> {
 	const user = await fetchUser()
 	const products = await fetchProducts()
 
-	// console.log('User:', user)
-	// console.log('Products:', products)
+	return { user, products }
 }
 
-// 🐨 Export fetchUser, fetchProducts, and loadData
-// export { fetchUser, fetchProducts, loadData }
+export { fetchUser, fetchProducts, loadData }
 
 void loadData()

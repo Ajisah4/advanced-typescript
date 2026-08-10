@@ -45,18 +45,21 @@ function fetchOrders(userId: string): Promise<Array<Order>> {
 }
 
 async function loadUserData(userId: string) {
-	// 🐨 Wrap the awaits in try/catch (and optionally finally)
-	//    Catch errors internally — do not rethrow
-	//    fetchUser('1') succeeds; other ids reject
+	try {
+		const user = await fetchUser(userId)
+		console.log('User:', user)
 
-	const user = await fetchUser(userId)
-	// console.log('User:', user)
-
-	const orders = await fetchOrders(user.id)
-	// console.log('Orders:', orders)
+		const orders = await fetchOrders(user.id)
+		console.log('Orders:', orders)
+	} catch (error) {
+		if (error instanceof Error) {
+			console.error('Error:', error.message)
+		} else {
+			console.error('Unknown error')
+		}
+	}
 }
 
 void loadUserData('1')
 
-// 🐨 Export loadUserData so we can verify your work
-// export { loadUserData }
+export { loadUserData }
