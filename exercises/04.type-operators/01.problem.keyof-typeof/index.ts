@@ -7,11 +7,15 @@ type User = {
 	age: number
 }
 
-// 🐨 Create a type `UserKey` that is the union of User's keys
+// Union of User keys
+type UserKey = keyof User
 
-// 🐨 Create `getUserProperty(user, key)`:
-//    - key is constrained to UserKey
-//    - returns the value at that key with the matching value type
+function getUserProperty<K extends UserKey>(
+	user: User,
+	key: K,
+): User[K] {
+	return user[key]
+}
 
 // Using typeof with values
 const config = {
@@ -20,18 +24,20 @@ const config = {
 	retries: 3,
 }
 
-// 🐨 Create a type `Config` based on the config object
-// 🐨 Create a type `ConfigKey` from Config's keys
+// Type based on config object
+type Config = typeof config
 
-// Using as const for literal types
-// 🐨 Preserve literal types for the httpMethods array
-const httpMethods = ['GET', 'POST', 'PUT', 'DELETE']
+// Union of config keys
+type ConfigKey = keyof Config
 
-// 🐨 Create a type `HttpMethod` from the array elements
-//    (a union of those literal method names, not plain string)
+// Preserve literal types with as const
+const httpMethods = ['GET', 'POST', 'PUT', 'DELETE'] as const
 
-// 🐨 Create `makeRequest(method, url)` that returns e.g. "GET /api/users"
-//    method should be constrained to HttpMethod
+// "GET" | "POST" | "PUT" | "DELETE"
+type HttpMethod = (typeof httpMethods)[number]
 
-// 🐨 Export getUserProperty, makeRequest, config, and httpMethods
-// export { getUserProperty, makeRequest, config, httpMethods }
+function makeRequest(method: HttpMethod, url: string): string {
+	return `${method} ${url}`
+}
+
+export { getUserProperty, makeRequest, config, httpMethods }
