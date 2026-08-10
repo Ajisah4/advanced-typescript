@@ -3,7 +3,7 @@ function formatCurrency(amount: number): string {
 }
 
 function formatDate(date: Date): string {
-	return date.toLocaleDateString()
+	return date.toLocaleDateString('en-US')
 }
 
 class Formatter {
