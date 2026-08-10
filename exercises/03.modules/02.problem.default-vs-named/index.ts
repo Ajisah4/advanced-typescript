@@ -1,18 +1,21 @@
-// Default vs Named Exports
+function formatCurrency(amount: number): string {
+	return `$${amount.toFixed(2)}`
+}
 
-// Named imports
-import { formatCurrency, formatDate } from './utils.ts'
+function formatDate(date: Date): string {
+	return date.toLocaleDateString()
+}
 
-// Default import
-import Formatter from './utils.ts'
+class Formatter {
+	formatCurrency(amount: number): string {
+		return formatCurrency(amount)
+	}
 
-// console.log(formatCurrency(99.99)) // '$99.99'
-// console.log(formatDate(new Date()))
+	formatDate(date: Date): string {
+		return formatDate(date)
+	}
+}
 
-const formatter = new Formatter()
+export { formatCurrency, formatDate }
 
-// console.log(formatter.formatCurrency(199.99)) // '$199.99'
-// console.log(formatter.formatDate(new Date()))
-
-// Re-export so tests can verify the imports
-export { formatCurrency, formatDate, Formatter }
+export default Formatter
