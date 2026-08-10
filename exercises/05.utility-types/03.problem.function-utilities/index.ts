@@ -2,25 +2,45 @@
 
 // Example functions
 function createUser(name: string, email: string, age: number) {
-	return { id: crypto.randomUUID(), name, email, age, createdAt: new Date() }
+	return {
+		id: crypto.randomUUID(),
+		name,
+		email,
+		age,
+		createdAt: new Date(),
+	}
 }
 
 async function fetchUser(id: string): Promise<{ id: string; name: string }> {
 	return { id, name: 'Alice' }
 }
 
-function processData(data: Array<string>, options: { limit: number }): number {
+function processData(
+	data: Array<string>,
+	options: { limit: number },
+): number {
 	return Math.min(data.length, options.limit)
 }
 
-// 🐨 Create NewUser from createUser's return type
-// 🐨 Create CreateUserParams from createUser's parameter tuple
-// 🐨 Create FetchUserResult for fetchUser's resolved value
-// 🐨 Create ProcessDataArgs from processData's parameter tuple
+// createUser's return type
+type NewUser = ReturnType<typeof createUser>
 
-// 🐨 Create loggedCreateUser:
-//    - same parameters and return type as createUser
-//    - logs the args, then delegates to createUser
+// createUser's parameter tuple
+type CreateUserParams = Parameters<typeof createUser>
 
-// 🐨 Export loggedCreateUser so we can verify your work
-// export { loggedCreateUser }
+// fetchUser's resolved value
+type FetchUserResult = Awaited<ReturnType<typeof fetchUser>>
+
+// processData's parameter tuple
+type ProcessDataArgs = Parameters<typeof processData>
+
+// Same parameters and return type as createUser
+function loggedCreateUser(
+	...args: CreateUserParams
+): NewUser {
+	console.log(args)
+
+	return createUser(...args)
+}
+
+export { loggedCreateUser }

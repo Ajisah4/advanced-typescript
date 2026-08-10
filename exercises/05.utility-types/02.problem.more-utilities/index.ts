@@ -8,25 +8,70 @@ type User = {
 	website?: string
 }
 
-// 🐨 Create Config as a Record of string keys to number values
-// 🐨 Create ReadonlyUser where all User properties are readonly
-// 🐨 Create UserWithoutId that removes the id property
-// 🐨 Create RequiredUser where optional properties become required
+// Record of string keys to number values
+type Config = Record<string, number>
+
+// All User properties readonly
+type ReadonlyUser = Readonly<User>
+
+// User without id
+type UserWithoutId = Omit<User, 'id'>
+
+// Optional properties become required
+type RequiredUser = Required<User>
 
 // Union type utilities
-type Status = 'pending' | 'active' | 'inactive' | 'deleted' | null | undefined
+type Status =
+	| 'pending'
+	| 'active'
+	| 'inactive'
+	| 'deleted'
+	| null
+	| undefined
 
-// 🐨 Create ActiveStatus — Status values that remain after removing deleted
-//    and nullish entries
-// 🐨 Create ValidStatus — remove null and undefined
-// 🐨 Create StringStatus — keep only string variants of Status
+// Remove deleted, null, and undefined
+type ActiveStatus = Exclude<NonNullable<Status>, 'deleted'>
 
-// 🐨 Create these fixtures with your types, then export them:
-// config → { timeout: 5000, retries: 3 }
-// readonlyUser → { id: '1', name: 'Alice', email: 'a@b.com' }
-// newUser → { name: 'Bob', email: 'b@b.com' }
-// fullUser → includes bio: 'Hello!' and website: 'https://alice.dev'
-// status → 'active' (ValidStatus)
-// activeStatus → 'pending' (ActiveStatus)
+// Remove null and undefined
+type ValidStatus = NonNullable<Status>
 
-// export { config, readonlyUser, newUser, fullUser, status, activeStatus }
+// Keep only string variants
+type StringStatus = Extract<Status, string>
+
+// Fixtures
+const config: Config = {
+	timeout: 5000,
+	retries: 3,
+}
+
+const readonlyUser: ReadonlyUser = {
+	id: '1',
+	name: 'Alice',
+	email: 'a@b.com',
+}
+
+const newUser: UserWithoutId = {
+	name: 'Bob',
+	email: 'b@b.com',
+}
+
+const fullUser: RequiredUser = {
+	id: '1',
+	name: 'Alice',
+	email: 'a@b.com',
+	bio: 'Hello!',
+	website: 'https://alice.dev',
+}
+
+const status: ValidStatus = 'active'
+
+const activeStatus: ActiveStatus = 'pending'
+
+export {
+	config,
+	readonlyUser,
+	newUser,
+	fullUser,
+	status,
+	activeStatus,
+}
