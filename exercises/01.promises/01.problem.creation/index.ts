@@ -6,11 +6,21 @@ type User = {
 	email: string
 }
 
-// 🐨 Create a function `fetchUser` that returns a Promise<User>
-//    Resolve after a short delay with:
-//    { id: '1', name: 'Alice', email: 'alice@example.com' }
+function fetchUser(): Promise<User> {
+	return new Promise((resolve) => {
+		setTimeout(() => {
+			resolve({
+				id: '1',
+				name: 'Alice',
+				email: 'alice@example.com',
+			})
+		}, 100)
+	})
+}
 
-// 🐨 Call fetchUser and log the result when it resolves (optional)
+// Optional: call fetchUser and log the result
+fetchUser().then((user) => {
+	console.log(user)
+})
 
-// 🐨 Export fetchUser so we can verify your work
-// export { fetchUser }
+export { fetchUser }

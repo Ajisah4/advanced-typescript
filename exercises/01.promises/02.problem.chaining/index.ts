@@ -40,16 +40,24 @@ function fetchOrders(userId: string): Promise<Array<Order>> {
 	})
 }
 
-// 🐨 Create fetchUserAndOrders() that:
-//    1. Calls fetchUser()
-//    2. Passes user.id into fetchOrders(userId)
-//    3. Returns Promise<{ user: User; orders: Array<Order> }>
+function fetchUserAndOrders(): Promise<{
+	user: User
+	orders: Array<Order>
+}> {
+	return fetchUser().then((user) => {
+		return fetchOrders(user.id).then((orders) => {
+			return {
+				user,
+				orders,
+			}
+		})
+	})
+}
 
-// 🐨 verify your work with:
-// fetchUserAndOrders().then(({ user, orders }) => {
-// 	console.log(user)
-// 	console.log(orders)
-// })
+// Verify your work
+fetchUserAndOrders().then(({ user, orders }) => {
+	console.log(user)
+	console.log(orders)
+})
 
-// 🐨 Export fetchUserAndOrders so we can verify your work
-// export { fetchUserAndOrders }
+export { fetchUserAndOrders }
