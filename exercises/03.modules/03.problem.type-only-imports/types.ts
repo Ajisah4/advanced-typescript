@@ -1,2 +1,13 @@
-// 🐨 Export the User and Product types from this module
-//    (move the type aliases that currently live in index.ts)
+/type User = {
+	id: string
+	name: string
+	email: string
+}
+
+type Product = {
+	id: string
+	name: string
+	price: number
+}
+
+export type { User, Product }

@@ -1,19 +1,6 @@
 // Type-Only Imports
 
-type User = {
-	id: string
-	name: string
-	email: string
-}
-
-type Product = {
-	id: string
-	name: string
-	price: number
-}
-
-// 🐨 Move User and Product into types.ts, export them there,
-//    then bring them back with a type-only import (no runtime values)
+import type { User, Product } from './types.ts'
 
 function displayUser(user: User) {
 	console.log(`User: ${user.name} (${user.email})`)
@@ -38,5 +25,4 @@ const product: Product = {
 displayUser(user)
 displayProduct(product)
 
-// 🐨 Export displayUser and displayProduct so we can verify your work
-// export { displayUser, displayProduct }
+export { displayUser, displayProduct }
